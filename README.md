@@ -84,3 +84,4 @@ src/
 
 ### Disclaimer
 This project is for education only and is not intended for clinical use.
+# PharmaCheck
