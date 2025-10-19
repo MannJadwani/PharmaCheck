@@ -42,12 +42,12 @@ export function ParallaxBackground({ scrollContainerId }: ParallaxBackgroundProp
       }
     };
 
-    const targetEl: any = scrollTarget;
-    targetEl.addEventListener('scroll', onScroll, { passive: true });
+    const targetEl = scrollTarget as Window | HTMLElement;
+    targetEl.addEventListener('scroll', onScroll as EventListenerOrEventListenerObject, { passive: true });
     onScroll();
 
     return () => {
-      targetEl.removeEventListener('scroll', onScroll);
+      targetEl.removeEventListener('scroll', onScroll as EventListenerOrEventListenerObject);
       if (rafId) cancelAnimationFrame(rafId);
     };
   }, [scrollContainerId]);

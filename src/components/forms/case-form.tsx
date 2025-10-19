@@ -64,10 +64,11 @@ const statusAfterSubmit: CaseStatus = 'submitted';
 
 function generateId(): string {
   try {
-    // @ts-ignore
-    if (typeof crypto !== 'undefined' && crypto?.randomUUID) {
-      // @ts-ignore
-      return crypto.randomUUID();
+    if (typeof globalThis !== 'undefined') {
+      const anyGlobal = globalThis as unknown as { crypto?: { randomUUID?: () => string } };
+      if (anyGlobal.crypto?.randomUUID) {
+        return anyGlobal.crypto.randomUUID();
+      }
     }
   } catch {}
   const randomHex = (len: number) =>

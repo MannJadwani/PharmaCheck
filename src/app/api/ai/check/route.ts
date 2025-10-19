@@ -21,7 +21,6 @@ const requestSchema = z.object({
 
 export async function POST(request: Request) {
   const parsedBody = requestSchema.safeParse(await request.json());
-  const apiKey = request.headers.get('x-gemini-api-key') || '';
 
   if (!parsedBody.success) {
     return NextResponse.json(
